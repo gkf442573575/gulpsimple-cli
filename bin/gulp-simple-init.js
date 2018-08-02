@@ -44,7 +44,7 @@ function downloadTemplate(params) {
         return false;
     }
     // 开始下载模板文件
-    download('https://github.com/gkf442573575/gulpsimple.git', dir, {
+    download('github:gkf442573575/gulpsimple', dir, {
         clone: true
     }, function(err) {
         spinner.stop();
