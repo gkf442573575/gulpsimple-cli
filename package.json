@@ -1,30 +1,23 @@
 {
-  "name": "gulpsimple-cli",
-  "version": "1.0.0",
-  "description": "",
-  "main": "bin/gulp-simple.js",
-  "bin": {
-    "gulpsimple": "bin/gulp-simple.js"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository:":"",
-  "author": "gkf442573575@163.com",
-  "license": "ISC",
-  "dependencies": {
-    "babel-core": "^6.26.3",
-    "colors": "^1.3.0",
-    "commander": "^2.16.0"
-  },
-  "devDependencies": {
-    "babel": "^6.23.0",
-    "babel-cli": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-1": "^6.24.1",
-    "download-git-repo": "^1.0.2",
-    "inquirer": "^6.0.0",
-    "ora": "^3.0.0",
-    "shelljs": "^0.8.2"
-  }
+    "name": "gulpsimple-cli",
+    "version": "1.0.2",
+    "description": "",
+    "main": "bin/gulp-simple.js",
+    "bin": {
+        "gulpsimple": "bin/gulp-simple.js"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository:": "",
+    "author": "gkf442573575@163.com",
+    "license": "ISC",
+    "dependencies": {
+        "colors": "^1.3.0",
+        "commander": "^2.16.0",
+        "download-git-repo": "^1.0.2",
+        "inquirer": "^6.0.0",
+        "ora": "^3.0.0",
+        "shelljs": "^0.8.2"
+    }
 }
