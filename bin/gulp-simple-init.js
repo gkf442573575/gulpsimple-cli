@@ -36,7 +36,8 @@ inquirer.prompt(questions).then((answers) => {
 })
 
 function downloadTemplate(params) {
-    spinner.start('loading');
+    const spinner = ora('downloading')
+    spinner.start();
     let isHasDir = fs.existsSync(DIR_PATH);
     if (isHasDir) {
         spinner.fail('当前目录已存在!');
@@ -46,6 +47,7 @@ function downloadTemplate(params) {
     download('https://github.com/gkf442573575/gulpsimple.git', dir, {
         clone: true
     }, function(err) {
+        spinner.stop();
         if (err) {
             spinner.fail(err);
             return;
