@@ -59,17 +59,16 @@ function updateTemplateFile(params) {
         name,
         description
     } = params;
-    let DIR_PATH = path.resolve(dir);
-    fs.readFile(`${DIR_PATH}/package.json`, (err, buffer) => {
+    fs.readFile(`${app}/package.json`, (err, buffer) => {
         if (err) {
             console.log(chalk.red(err));
             return false;
         }
-        shell.rm('-f', `${DIR_PATH}/.git`);
-        shell.rm('-f', `${DIR_PATH}/README.md`);
+        shell.rm('-f', `${app}/.git`);
+        shell.rm('-f', `${app}/README.md`);
         let packageJson = JSON.parse(buffer);
         Object.assign(packageJson, params);
-        fs.writeFileSync(`${DIR_PATH}/package.json`, JSON.stringify(packageJson, null, 2));
+        fs.writeFileSync(`${app}/package.json`, JSON.stringify(packageJson, null, 2));
         spinner.succeed('创建完毕');
     });
 }
