@@ -1,5 +1,5 @@
 {
-    "name": "gulpsimple-cli",
+    "name": "gulp-simple-cli",
     "version": "1.0.0",
     "description": "一个gulp简易脚手架",
     "main": "bin/gulp-simple.js",
