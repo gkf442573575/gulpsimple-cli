@@ -15,7 +15,7 @@ program.parse(process.argv);
 
 let dir = program.args[0];
 
-let app = path.join(__dirname, `../${dir}`)
+let app = path.resolve(dir)
 
 const questions = [{
     type: 'input',
@@ -42,7 +42,7 @@ inquirer.prompt(questions).then((answers) => {
 
 function downloadTemplate(params) {
     spinner.start('downloading');
-    if (fs.existsSync(dir)) fs.emptyDirSync(dir)
+    if (fs.existsSync(app)) fs.emptyDirSync(app)
     // 开始下载模板文件
     download('gkf442573575/gulpsimple', app, function(err) {
         spinner.stop();
