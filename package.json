@@ -1,23 +1,28 @@
 {
     "name": "gulpsimple-cli",
-    "version": "1.0.4",
-    "description": "",
+    "version": "1.0.0",
+    "description": "一个gulp简易脚手架",
     "main": "bin/gulp-simple.js",
     "bin": {
         "gulpsimple": "bin/gulp-simple.js"
     },
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository:": "",
+    "repository:": "https://github.com/gkf442573575/gulpsimple-cli.git",
     "author": "gkf442573575@163.com",
     "license": "ISC",
     "dependencies": {
-        "colors": "^1.3.0",
+        "chalk": "^2.4.1",
         "commander": "^2.16.0",
         "download-git-repo": "^1.0.2",
+        "fs-extra": "^7.0.0",
         "inquirer": "^6.0.0",
         "ora": "^3.0.0",
         "shelljs": "^0.8.2"
-    }
+    },
+    "preferGlobal": true,
+    "keywords": [
+        "gulp",
+        "gulp-simple",
+        "gulpsimple",
+        "gulpsimple-cli"
+    ]
 }

@@ -5,22 +5,23 @@ const program = require('commander');
 const inquirer = require('inquirer');
 const download = require('download-git-repo');
 const ora = require('ora');
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
-const colors = require('colors');
+const chalk = require('chalk');
 const spinner = ora();
+
 
 program.parse(process.argv);
 
 let dir = program.args[0];
 
-let DIR_PATH = path.resolve(dir);
+let app = path.join(__dirname, `../${dir}`)
 
 const questions = [{
     type: 'input',
     name: 'name',
     message: '请输入项目名称',
-    default: 'gulp-simple',
+    default: dir,
     validate: (name) => {
         if (/^[a-z]+/.test(name)) {
             return true;
@@ -28,6 +29,10 @@ const questions = [{
             return '项目名称必须以小写字母开头';
         }
     }
+}, {
+    type: 'input',
+    name: 'description',
+    message: '请输入项目简介',
 }]
 
 inquirer.prompt(questions).then((answers) => {
@@ -36,20 +41,13 @@ inquirer.prompt(questions).then((answers) => {
 })
 
 function downloadTemplate(params) {
-    const spinner = ora('downloading')
-    spinner.start();
-    let isHasDir = fs.existsSync(DIR_PATH);
-    if (isHasDir) {
-        spinner.fail('当前目录已存在!');
-        return false;
-    }
+    spinner.start('downloading');
+    if (fs.existsSync(dir)) fs.emptyDirSync(dir)
     // 开始下载模板文件
-    download('github:gkf442573575/gulpsimple', dir, {
-        clone: true
-    }, function(err) {
+    download('gkf442573575/gulpsimple', app, function(err) {
         spinner.stop();
         if (err) {
-            spinner.fail(err);
+            console.log(chalk.red(err));
             return;
         };
         updateTemplateFile(params);
@@ -61,13 +59,14 @@ function updateTemplateFile(params) {
         name,
         description
     } = params;
-
+    let DIR_PATH = path.resolve(dir);
     fs.readFile(`${DIR_PATH}/package.json`, (err, buffer) => {
         if (err) {
-            console.log(colors.red(err));
+            console.log(chalk.red(err));
             return false;
         }
         shell.rm('-f', `${DIR_PATH}/.git`);
+        shell.rm('-f', `${DIR_PATH}/README.md`);
         let packageJson = JSON.parse(buffer);
         Object.assign(packageJson, params);
         fs.writeFileSync(`${DIR_PATH}/package.json`, JSON.stringify(packageJson, null, 2));
