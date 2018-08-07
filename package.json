@@ -1,12 +1,15 @@
 {
     "name": "gulpsimple-cli",
-    "version": "1.0.0",
+    "version": "1.0.6",
     "description": "一个gulp简易脚手架",
     "main": "bin/gulp-simple.js",
     "bin": {
         "gulpsimple": "bin/gulp-simple.js"
     },
-    "repository:": "https://github.com/gkf442573575/gulpsimple-cli.git",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/gkf442573575/gulpsimple-cli.git"
+    },
     "author": "gkf442573575@163.com",
     "license": "ISC",
     "dependencies": {
