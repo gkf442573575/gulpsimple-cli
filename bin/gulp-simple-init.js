@@ -69,6 +69,8 @@ function updateTemplateFile(params) {
         let packageJson = JSON.parse(buffer);
         Object.assign(packageJson, params);
         fs.writeFileSync(`${app}/package.json`, JSON.stringify(packageJson, null, 2));
-        spinner.succeed('创建完毕');
+        
+
+        // spinner.succeed('创建完毕');
     });
 }
