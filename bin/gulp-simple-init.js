@@ -9,8 +9,6 @@ const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
 const spinner = ora();
-
-
 program.parse(process.argv);
 
 let dir = program.args[0];
@@ -69,8 +67,57 @@ function updateTemplateFile(params) {
         let packageJson = JSON.parse(buffer);
         Object.assign(packageJson, params);
         fs.writeFileSync(`${app}/package.json`, JSON.stringify(packageJson, null, 2));
-        
 
-        // spinner.succeed('创建完毕');
+        inquirer.prompt([{
+            type: 'list',
+            name: 'installtype',
+            message: '请选择升级方式',
+            choices: [{
+                    name: 'Use npm',
+                    value: 'npm'
+                },
+                {
+                    name: 'Use cnpm',
+                    value: 'cnpm'
+                }, {
+                    name: 'Use yarn',
+                    value: 'yarn'
+                }, {
+                    name: 'Install by Myself',
+                    value: 'myself'
+                }
+            ]
+        }]).then(answers => {
+            if (answers.installtype == 'myself') {
+                spinner.succeed('创建完毕');
+            } else {
+                installProject(answers.installtype);
+            }
+        })
+
     });
+}
+
+
+function installProject(type) {
+    shell.cd(dir);
+    spinner.start('installing');
+    let shellType;
+    switch (type) {
+        case 'npm':
+            shellType = 'npm install'
+            break;
+        case 'cnpm':
+            shellType = 'cnpm install'
+            break;
+        case 'yarn':
+            shellType = 'yarn'
+            break;
+        default:
+            shellType = 'npm install'
+            break;
+    }
+    shell.exec(shellType, () => {
+        spinner.succeed('创建完毕');
+    })
 }
